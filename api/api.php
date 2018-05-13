@@ -101,9 +101,11 @@
     function checkPassword() {
         global $websitePassword;
         
-        if(isset($_COOKIE['auth']) && $_COOKIE['auth'] == true) {
+        if(isset($_COOKIE['auth']) && isset($_COOKIE['session']) && $_COOKIE['auth'] == true && password_verify($websitePassword, $_COOKIE['session'])) {
             return true;
         } else {
+            setcookie('auth', false);
+            setcookie('session', false);
             redirect('login.php');
         }
     }

@@ -21,7 +21,14 @@
       
       if(isset($enteredPass)) {
         if($enteredPass == $websitePassword) {
-          setcookie("auth", true);
+          if($_POST['remember'] == true) {
+            $expire = time() + (86400 * 365);
+            setcookie("auth", true, $expire);
+            setcookie("session", password_hash($websitePassword, PASSWORD_DEFAULT), $expire);
+          } else {
+            setcookie("auth", true);
+            setcookie("session", password_hash($websitePassword, PASSWORD_DEFAULT));
+          }
           $classes = "has-success has-feedback";
           redirect('index.php');
           return;
@@ -31,7 +38,7 @@
         }
       }
       
-      if(isset($_COOKIE['auth']) && $_COOKIE['auth'] == true) {
+      if(isset($_COOKIE['auth']) && isset($_COOKIE['session']) && $_COOKIE['auth'] == true && password_verify($websitePassword, $_COOKIE['session'])) {
         redirect('index.php');
         return;
       }
@@ -51,10 +58,17 @@
           ?>
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-search" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Password" name="password" type="password">
+            <input class="form-control" placeholder="Password" name="password" type="password" required="true">
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="remember" id="remember"> Remember Me
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="pass-btn">Submit</button>
       </form>
     </div>
     <script src="js/jquery.min.js"></script>

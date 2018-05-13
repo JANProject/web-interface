@@ -45,24 +45,24 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-search" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Student ID" name="id">
+            <input class="form-control" placeholder="Student ID" name="id" required="true">
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
       </form>
       <label>Date and/or Time Lookup</label>
       <form action="datetime.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Date" name="date" data-toggle="datepicker">
+            <input class="form-control" placeholder="Date" name="date" type="date">
           </div>
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Time" name="time" type="time">
+            <input class="form-control" placeholder="Time" name="time" type="time" >
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
       </form>
       <p>Leave date empty to search through every day</p>
       <p>Leave time empty to search through the whole day</p>
@@ -85,9 +85,6 @@
     </footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/datepicker.min.js"></script>
-    <script>
-      $('[data-toggle="datepicker"]').datepicker();
-    </script>
+    <script src="js/forms.js"></script>
   </body>
 </html>

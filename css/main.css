@@ -44,6 +44,29 @@
 */
 
 /* ====== */
+/* NAVBAR */
+/* ====== */
+
+.icon-bar {
+  transition: all ease-in-out 0.2s;
+  -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+}
+
+button[class='navbar-toggle'] .icon-bar {
+  transform: rotate(135deg) translate(4px, -4px);
+}
+
+button[class='navbar-toggle'] .icon-bar + .icon-bar {
+  opacity: 0;
+}
+
+button[class='navbar-toggle'] .icon-bar + .icon-bar + .icon-bar {
+  opacity: 1 !important;
+  transform: rotate(-135deg) translate(4px, 4px);
+}
+
+/* ====== */
 /* FOOTER */
 /* ====== */
 

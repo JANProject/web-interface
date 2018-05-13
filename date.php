@@ -43,23 +43,29 @@
       </div>
     </div>
     <div class="container">
+      <label>Student Lookup</label>
       <form action="id.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-search" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Student ID" name="id">
+            <input class="form-control" placeholder="Student ID" name="id" required="true">
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
       </form>
-      <form action="date.php" class="form-inline">
+      <label>Date and/or Time Lookup</label>
+      <form action="datetime.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Date" name="date" data-toggle="datepicker">
+            <input class="form-control" placeholder="Date" name="date" type="date">
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
+            <input class="form-control" placeholder="Time" name="time" type="time">
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
       </form>
       <table class="table table-striped">
         <thead>
@@ -84,9 +90,6 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/datepicker.min.js"></script>
-    <script>
-      $('[data-toggle="datepicker"]').datepicker();
-    </script>
+    <script src="js/forms.js"></script>
   </body>
 </html>

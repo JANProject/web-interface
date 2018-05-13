@@ -7,6 +7,7 @@
       require("api/api.php");
       
       setcookie("auth", false);
+      setcookie("session", false);
       redirect('login.php');
     ?>
   </body>
