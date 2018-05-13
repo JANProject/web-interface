@@ -1,0 +1,84 @@
+/* ======= */
+/* GENERAL */
+/* ======= */
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  height: 25vh;
+}
+
+.jumbotron a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main {
+  min-height: calc(75vh - 135px);
+  min-height: -webkit-calc(75vh - 135px);
+  min-height: -moz-calc(75vh - 135px);
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    min-height: calc(75vh - 172px);
+    min-height: -webkit-calc(75vh - 172px);
+    min-height: -moz-calc(75vh - 172px);
+  }
+}
+
+/*
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #eee;
+  height: 32px;
+  padding: auto auto !important;
+}
+
+.caption h3 {
+  margin: 0px 0px !important;
+}
+*/
+
+/* ====== */
+/* FOOTER */
+/* ====== */
+
+footer {
+  background-color: #3af;
+  padding-top: 28px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+footer p {
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+footer .text, .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  footer .text {
+    justify-content: flex-start;
+  }
+  
+  footer .icons {
+    justify-content: flex-end;
+  }
+}
+
+.fa-heart, .fa-circle {
+  color: white;
+}
+
+.fa-github {
+  color: black;
+}
