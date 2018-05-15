@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/datepicker.min.css" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
     <!--Icons-->
     <script defer src="js/fontawesome-all.min.js"></script>
@@ -70,9 +70,9 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Student ID</th>
-            <th>Time Out</th>
-            <th>Time In</th>
+            <th onclick="sortTable(0)">Student ID <span class="dropup" data-toggle="0"><span class="caret"></span></span></th>
+            <th onclick="sortTable(1)">Time Out <span class="dropup" data-toggle="1"><span class="caret"></span></span></th>
+            <th onclick="sortTable(2)">Time In <span class="dropup" data-toggle="2"><span class="caret"></span></span></th>
           </tr>
         </thead>
         <tbody>

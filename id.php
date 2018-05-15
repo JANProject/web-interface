@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/datepicker.min.css" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
     <!--Icons-->
     <script defer src="js/fontawesome-all.min.js"></script>
