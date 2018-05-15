@@ -105,3 +105,20 @@ footer .text, .icons {
 .fa-github {
   color: black;
 }
+
+/* ====== */
+/* TABLES */
+/* ====== */
+
+th:hover {
+  cursor: pointer;
+}
+
+th:hover .caret {
+  opacity: 1;
+  color: #333 !important;
+}
+
+.caret {
+  opacity: 0;
+}

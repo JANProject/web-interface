@@ -19,9 +19,9 @@
     function get_dates($date) {
         $mysql = get_mysql();
         
-        $mm = explode('/', $date)[0];
-        $dd = explode('/', $date)[1];
-        $yyyy = explode('/', $date)[2];
+        $yyyy = explode('-', $date)[0];
+        $mm = explode('-', $date)[1];
+        $dd = explode('-', $date)[2];
         
         return $mysql -> query("SELECT * FROM ll_log WHERE date='{$yyyy}-{$mm}-{$dd}';");
     }
@@ -47,9 +47,9 @@
     }
     
     function convertToUSDate($date) {
-        $mm = explode('/', $date)[0];
-        $dd = explode('/', $date)[1];
-        $yyyy = explode('/', $date)[2];
+        $yyyy = explode('-', $date)[0];
+        $mm = explode('-', $date)[1];
+        $dd = explode('-', $date)[2];
         
         return "{$mm}/{$dd}/{$yyyy}";
     }
@@ -78,6 +78,10 @@
     }
     
     function parseTime($minutes, $_12hour) {
+        if($minutes == null) {
+            return "Hasn't returned";
+        }
+        
         $time = floor($minutes / 60) . ':' . $minutes % 60;
         
         if($_12hour) {

@@ -29,6 +29,7 @@
             setcookie("auth", true);
             setcookie("session", password_hash($websitePassword, PASSWORD_DEFAULT));
           }
+          
           $classes = "has-success has-feedback";
           redirect('index.php');
           return;

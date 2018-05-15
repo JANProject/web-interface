@@ -50,12 +50,13 @@
         </div>
         <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
       </form>
-      <label>Date and/or Time Lookup</label>
+      <p>See when a student was in the bathroom</p>
+      <label>Date and Time Lookup</label>
       <form action="datetime.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Date" name="date" type="date">
+            <input class="form-control" placeholder="Date" name="date" type="date" required="true">
           </div>
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
@@ -64,7 +65,7 @@
         </div>
         <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
       </form>
-      <p>Leave date empty to search through every day</p>
+      <p>See who was in the bathroom on a certain day (and time)</p>
       <p>Leave time empty to search through the whole day</p>
     </div>
     <footer>
@@ -85,6 +86,5 @@
     </footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/forms.js"></script>
   </body>
 </html>

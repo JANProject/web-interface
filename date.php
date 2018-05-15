@@ -38,7 +38,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1><?php
-          echo $_GET['date'];
+          echo convertToUSDate($_GET['date']);
         ?></h1>
       </div>
     </div>
@@ -53,16 +53,16 @@
         </div>
         <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
       </form>
-      <label>Date and/or Time Lookup</label>
+      <label>Date and Time Lookup</label>
       <form action="datetime.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Date" name="date" type="date">
+            <input class="form-control" placeholder="Date" name="date" type="date" required="true">
           </div>
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Time" name="time" type="time">
+            <input class="form-control" placeholder="Time" name="time" type="time" >
           </div>
         </div>
         <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
@@ -90,6 +90,6 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/forms.js"></script>
+    <script src="js/tables.js"></script>
   </body>
 </html>

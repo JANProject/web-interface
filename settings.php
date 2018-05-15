@@ -3,7 +3,7 @@
     $username = "root";
     $password = "";
     $dbname = "project";
-    $port;
+    $port = 3306;
     
     $websitePassword = "password";
 ?>

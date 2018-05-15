@@ -53,16 +53,16 @@
         </div>
         <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
       </form>
-      <label>Date and/or Time Lookup</label>
+      <label>Date and Time Lookup</label>
       <form action="datetime.php" class="form-inline">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Date" name="date" type="date">
+            <input class="form-control" placeholder="Date" name="date" type="date" required="true">
           </div>
           <div class="input-group">
             <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
-            <input class="form-control" placeholder="Time" name="time" type="time">
+            <input class="form-control" placeholder="Time" name="time" type="time" >
           </div>
         </div>
         <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
@@ -70,9 +70,9 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Time Out</th>
-            <th>Time In</th>
+            <th onclick="sortTable(0)">Date <span class="dropup" data-toggle="0"><span class="caret"></span></span></th>
+            <th onclick="sortTable(1)">Time Out <span class="dropup" data-toggle="1"><span class="caret"></span></span></th>
+            <th onclick="sortTable(2)">Time In <span class="dropup" data-toggle="2"><span class="caret"></span></span></th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@
             }
             
             while($row = $result -> fetch_assoc()) {
-              echo '<tr><td>' . $row['date'] . '</td><td>' . parseTime($row['time_out'], true) . '</td><td>' . parseTime($row['time_in'], true) . '</td></tr>';
+              echo '<tr><td>' . convertToUSDate($row['date']) . '</td><td>' . parseTime($row['time_out'], true) . '</td><td>' . parseTime($row['time_in'], true) . '</td></tr>';
             }
           ?>
         </tbody>
@@ -90,6 +90,6 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/forms.js"></script>
+    <script src="js/tables.js"></script>
   </body>
 </html>
