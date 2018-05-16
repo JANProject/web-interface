@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   height: 25vh;
+  margin-top: 30px;
 }
 
 .jumbotron a {
@@ -14,17 +15,21 @@
 }
 
 .main {
-  min-height: calc(75vh - 135px);
-  min-height: -webkit-calc(75vh - 135px);
-  min-height: -moz-calc(75vh - 135px);
+  min-height: calc(75vh - 165px);
+  min-height: -webkit-calc(75vh - 165px);
+  min-height: -moz-calc(75vh - 136px);
 }
 
 @media only screen and (max-width: 768px) {
   .main {
-    min-height: calc(75vh - 172px);
-    min-height: -webkit-calc(75vh - 172px);
-    min-height: -moz-calc(75vh - 172px);
+    min-height: calc(75vh - 202px);
+    min-height: -webkit-calc(75vh - 202px);
+    min-height: -moz-calc(75vh - 202px);
   }
+}
+
+.no-margin {
+  margin-top: 0;
 }
 
 /*

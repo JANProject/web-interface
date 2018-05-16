@@ -77,16 +77,26 @@
         return $hours . ":" . $minutes . $amPM;
     }
     
-    function parseTime($minutes, $_12hour) {
+    function parseTime($minutes, $use12Hour) {
         if($minutes == null) {
             return "Hasn't returned";
         }
         
-        $time = floor($minutes / 60) . ':' . $minutes % 60;
+        $min = $minutes % 60;
         
-        if($_12hour) {
+        if($min < 10) {
+            $min = "0" . $min;
+        }
+        
+        $time = floor($minutes / 60) . ':' . $min;
+        
+        if($use12Hour) {
             $hours = intval(explode(':', $time)[0]);
             $mins = intval(explode(':', $time)[1]);
+            
+            if($mins < 10) {
+                $mins = "0" . $mins;
+            }
             
             if($hours >= 12) {
                 return $hours - 12 . ':' . $mins . ' PM';

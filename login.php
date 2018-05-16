@@ -46,7 +46,7 @@
       
       setcookie("auth", false);
     ?>
-    <div class="jumbotron">
+    <div class="jumbotron no-margin">
       <div class="container">
         <h1>Lavatory Logger</h1>
       </div>
