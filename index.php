@@ -74,7 +74,7 @@
           <p>Made with <span class="fa fa-heart fa-lg" aria-hidden="true"></span><span class="sr-only">love</span> by Jacob, Avi, Nick, and Jack</p>
         </div>
         <div class="col-sm-2 icons">
-          <a href="https://github.com/JANProject">
+          <a href="https://github.com/LavatoryLogger">
             <span class="fa-stack fa-lg">
               <span class="fa fa-circle fa-stack-2x"></span>
               <span class="fab fa-github fa-stack-1x"></span>

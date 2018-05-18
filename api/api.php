@@ -98,8 +98,10 @@
                 $mins = "0" . $mins;
             }
             
-            if($hours >= 12) {
+            if($hours > 12) {
                 return $hours - 12 . ':' . $mins . ' PM';
+            } else if($hours == 12) {
+                return $hours . ':' . $mins . ' PM';
             } else {
                 return $hours . ':' . $mins . ' AM';
             }
