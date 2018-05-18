@@ -52,17 +52,17 @@
             $result = $mysql -> query("INSERT INTO ll_log VALUES ({$id}, '{$date}', {$time}, NULL);");
         }
         
-        $uploaddir = "uploads/";
-        $uploadfile = $uploaddir . basename( $_FILES['file']['name']);
+        // $uploaddir = "images/profiles/";
+        // $uploadfile = $uploaddir . basename( $_FILES['file']['name']);
         
-        if(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
-        {
-          print "The file has been uploaded successfully\n";
-        }
-        else
-        {
-          print "There was an error uploading the file\n";
-        }
+        // if(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
+        // {
+        //   print "The file has been uploaded successfully\n";
+        // }
+        // else
+        // {
+        //   print "There was an error uploading the file\n";
+        // }
         
         if($result) {
             print "Success!";
