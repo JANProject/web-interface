@@ -12,30 +12,43 @@
 
     function get_student_info($id) {
         $mysql = get_mysql();
-        return $mysql -> query("SELECT * FROM ll_log WHERE id='$id';");
+        $stmt = $mysql -> prepare("SELECT * FROM ll_log WHERE id=?;");
+        $stmt -> bind_param('i', $id);
+        $stmt -> execute();
+        $results = $stmt -> get_result();
+        $stmt -> close();
+        $mysql -> close();
+        
+        return $results;
         // $mysql -> query("CREATE TABLE IF NOT EXISTS ll_log (id INTEGER, date DATE, time_out INTEGER, time_in INTEGER DEFAULT NULL);");
     }
 
     function get_dates($date) {
         $mysql = get_mysql();
         
-        $yyyy = explode('-', $date)[0];
-        $mm = explode('-', $date)[1];
-        $dd = explode('-', $date)[2];
+        $stmt = $mysql -> prepare("SELECT * FROM ll_log WHERE date=?;");
+        $stmt -> bind_param('s', $date);
+        $stmt -> execute();
+        $results = $stmt -> get_result();
+        $stmt -> close();
+        $mysql -> close();
         
-        return $mysql -> query("SELECT * FROM ll_log WHERE date='{$yyyy}-{$mm}-{$dd}';");
+        return $results;
     }
     
     function get_datetime($date, $time) {
         $mysql = get_mysql();
         
-        $mm = explode('/', $date)[0];
-        $dd = explode('/', $date)[1];
-        $yyyy = explode('/', $date)[2];
-        
         $t = convertTimeToMin($time);
         
-        return $mysql -> query("SELECT * FROM ll_log WHERE date='{$yyyy}-{$mm}-{$dd}' AND time_out < {$t} AND time_in > {$t};");
+        $stmt = $mysql -> prepare("SELECT * FROM ll_log WHERE date=? AND time_out <= {$t} AND time_in >= {$t};");
+        $stmt -> bind_param('s', $date);
+        $stmt -> execute();
+        $results = $stmt -> get_result();
+        $stmt -> close();
+        $mysql -> close();
+        
+        return $results;
     }
     
     function get_times($time) {
