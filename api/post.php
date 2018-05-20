@@ -33,24 +33,24 @@
     
     $id = $_POST['id'];
     $date = $_POST['date'];
-    $time = $_POST['time'];
+    $time = intval($_POST['time']);
     $pass = $_POST['password'];
     
     if(is_set($id, "ID") && is_set($date, "Date") && is_set($pass, "Password") && is_set($time, "Time") && correctPassword($pass) && dateNotNull($date)) {
         $mysql = get_mysql();
         
-        $query = $mysql -> query("SELECT time_out FROM ll_log WHERE date='{$date}' AND id={$id} AND time_in IS NULL;");
+        $stmt1 = $mysql -> prepare("UPDATE ll_log SET time_in=? WHERE date=? AND id=? AND time_in IS NULL;");
+        $stmt1 -> bind_param('isi', $time, $date, $id);
+        $worked = $stmt1 -> execute();
         
-        $result = null;
-        
-        if($query && mysqli_num_rows($query) > 0) {
-            $time_in = $time;
-            $result = $query -> fetch_assoc();
-            $time_out = $result["time_out"];
-            $result = $mysql -> query("UPDATE ll_log SET time_in={$time} WHERE date='{$date}' AND id={$id} AND time_in IS NULL;");
-        } else {
-            $result = $mysql -> query("INSERT INTO ll_log VALUES ({$id}, '{$date}', {$time}, NULL);");
+        if(!$worked || $stmt1 -> affected_rows == 0) {
+            $stmt2 = $mysql -> prepare("INSERT INTO ll_log VALUES (?, ?, ?, NULL);");
+            $stmt2 -> bind_param('isi', $id, $date, $time);
+            $worked = $stmt2 -> execute();
+            $stmt2 -> close();
         }
+        
+        $stmt1 -> close();
         
         // $uploaddir = "images/profiles/";
         // $uploadfile = $uploaddir . basename( $_FILES['file']['name']);
@@ -64,10 +64,12 @@
         //   print "There was an error uploading the file\n";
         // }
         
-        if($result) {
+        if($worked) {
             print "Success!";
         } else {
             print "Error";
         }
+        
+        $mysql -> close();
     }
 ?>
