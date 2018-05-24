@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 var session = require("express-session");
-var validator = require("express-validator");
 var auth = require("./auth");
 
 var index = require('./routes/index');
@@ -40,7 +39,6 @@ var sess = {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
