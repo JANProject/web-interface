@@ -1,0 +1,137 @@
+/* ======= */
+/* GENERAL */
+/* ======= */
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  height: 25vh;
+  margin-top: 30px;
+}
+
+.jumbotron a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main {
+  min-height: calc(75vh - 165px);
+  min-height: -webkit-calc(75vh - 165px);
+  min-height: -moz-calc(75vh - 136px);
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    min-height: calc(75vh - 202px);
+    min-height: -webkit-calc(75vh - 202px);
+    min-height: -moz-calc(75vh - 202px);
+  }
+}
+
+.no-margin {
+  margin-top: 0;
+}
+
+::selection {
+  background: #75c5ff;
+}
+
+::-moz-selection {
+  background: #75c5ff;
+}
+
+/*
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #eee;
+  height: 32px;
+  padding: auto auto !important;
+}
+
+.caption h3 {
+  margin: 0px 0px !important;
+}
+*/
+
+/* ====== */
+/* NAVBAR */
+/* ====== */
+
+.icon-bar {
+  transition: all ease-in-out 0.2s;
+  -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+}
+
+button[class='navbar-toggle'] .icon-bar {
+  transform: rotate(135deg) translate(4px, -4px);
+}
+
+button[class='navbar-toggle'] .icon-bar + .icon-bar {
+  opacity: 0;
+}
+
+button[class='navbar-toggle'] .icon-bar + .icon-bar + .icon-bar {
+  opacity: 1 !important;
+  transform: rotate(-135deg) translate(4px, 4px);
+}
+
+/* ====== */
+/* FOOTER */
+/* ====== */
+
+footer {
+  background-color: #3af;
+  padding-top: 28px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+footer p {
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+footer .text, .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  footer .text {
+    justify-content: flex-start;
+  }
+  
+  footer .icons {
+    justify-content: flex-end;
+  }
+}
+
+.fa-heart, .fa-circle {
+  color: white;
+}
+
+.fa-github {
+  color: black;
+}
+
+/* ====== */
+/* TABLES */
+/* ====== */
+
+th:hover {
+  cursor: pointer;
+}
+
+th:hover .caret {
+  opacity: 1;
+  color: #333 !important;
+}
+
+.caret {
+  opacity: 0;
+}

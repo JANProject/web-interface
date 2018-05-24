@@ -1,0 +1,90 @@
+
+<html>
+  <head>
+    <title>Lavatory Logger</title>
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <!--Icons-->
+    <script defer src="/javascripts/fontawesome-all.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./">Lavatory Logger</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <form action="logout" class="navbar-form navbar-right" method="post">
+            <button type="submit" class="btn btn-default">Log Out</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <h1><%= id %></h1>
+      </div>
+    </div>
+    <div class="container">
+      <label>Student Lookup</label>
+      <form action="id" class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="fa fa-search" aria-hidden="true"></span></div>
+            <input class="form-control" placeholder="Student ID" name="id" required="true">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="id-btn">Submit</button>
+      </form>
+      <label>Date and Time Lookup</label>
+      <form action="datetime" class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="fa fa-calendar" aria-hidden="true"></span></div>
+            <input class="form-control" placeholder="Date" name="date" type="date" required="true">
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="fa fa-clock" aria-hidden="true"></span></div>
+            <input class="form-control" placeholder="Time" name="time" type="time" >
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="datetime-btn">Submit</button>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Date <span class="dropup" data-toggle="0"><span class="caret"></span></span></th>
+            <th onclick="sortTable(1)">Time Out <span class="dropup" data-toggle="1"><span class="caret"></span></span></th>
+            <th onclick="sortTable(2)">Time In <span class="dropup" data-toggle="2"><span class="caret"></span></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% include main.ejs %>
+          <% for(var i = 0; i < data.length; i++) { %>
+            <tr>
+              <td><%= moment(data[i].date).format('MM/DD/YYYY') %></td>
+              <td><%= convertMinToTime(data[i].time_out) %></td>
+              <td><%= convertMinToTime(data[i].time_in) %></td>
+            </tr>
+          <% } %>
+          <% if(data.length == 0) { %>
+            <tr><td colspan="3">No Data Found</td></tr>
+          <% } %>
+          
+        </tbody>
+      </table>
+    </div>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/tables.js"></script>
+  </body>
+</html>

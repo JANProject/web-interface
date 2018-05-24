@@ -1,0 +1,32 @@
+<%
+var use12Hour = true;
+
+convertMinToTime = function(minutes) {
+    var min = minutes % 60;
+        
+    if(min < 10) {
+        min = "0" + min;
+    }
+    
+    var time = Math.floor(minutes / 60) + ":" + min;
+    
+    if(use12Hour) {
+        var hours = parseInt(time.split(":")[0]);
+        var mins = parseInt(time.split(":")[1]);
+        
+        if(mins < 10) {
+            mins = "0" + mins;
+        }
+        
+        if(hours > 12) {
+            return hours - 12 + ":" + mins + " PM";
+        } else if(hours == 12) {
+            return hours + ":" + mins + " PM";
+        } else {
+            return hours + ":" + mins + " AM";
+        }
+    } else {
+        return time;
+    }
+}
+%>
