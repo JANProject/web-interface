@@ -7,11 +7,14 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var session = require("express-session");
 var validator = require("express-validator");
+var auth = require("./auth");
 
 var index = require('./routes/index');
 var id = require('./routes/id');
 var datetime = require('./routes/datetime');
 var login = require('./routes/login');
+var post = require('./routes/post')
+var logout = require('./routes/logout')
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -29,7 +32,7 @@ app.set('view engine', 'ejs');
 app.use(favicon(__dirname + "/public/favicon.png"))
 
 var sess = {
-    secret: 'password',
+    secret: auth.secret,
     saveUninitialized: false,
     resave: false
 };
@@ -46,46 +49,13 @@ app.use('/', index);
 app.use('/id', id);
 app.use('/datetime', datetime);
 app.use('/login', login);
+app.use('/post', post);
+app.use('/logout', logout);
 
 if(app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
-
-app.post('/post', function(req, res) {
-    con.query("UPDATE log SET time_in=? WHERE date=? AND id=? AND time_in IS NULL;", [req.body.time, req.body.date, req.body.id], function(err, result, fields) {
-        if(err) throw err;
-        
-        if(result.changedRows == 0) {
-            con.query("INSERT INTO log VALUES(?, ?, ?, NULL);", [req.body.id, req.body.date, req.body.time], function(err, result, fields) {
-                if(err) throw err;
-                
-                res.send("Success - Added row");
-            });
-        } else {
-            res.send("Success - Updated with time_in");
-        }
-    });
-});
-
-function parseCookies(request) {
-    var list = {}, rc = request.headers.cookie;
-
-    rc && rc.split(';').forEach(function( cookie ) {
-        var parts = cookie.split('=');
-        list[parts.shift().trim()] = decodeURI(parts.join('='));
-    });
-
-    return list;
-}
-
-app.post('/logout', function(req, res) {
-    req.session.destroy(function(err) {
-        if(err) throw err;
-    });
-    
-    res.redirect("/login");
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

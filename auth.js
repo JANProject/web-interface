@@ -15,5 +15,6 @@ module.exports = {
             req.session.incorrect = true;
             res.redirect('/login');
         }
-    }
+    },
+    secret: "SECRET DONT SHARE"
 };
