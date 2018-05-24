@@ -5,10 +5,13 @@ var favicon = require("serve-favicon");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
+var session = require("express-session");
+var validator = require("express-validator");
 
 var index = require('./routes/index');
-var id = require('./routes/id')
-var datetime = require('./routes/datetime')
+var id = require('./routes/id');
+var datetime = require('./routes/datetime');
+var login = require('./routes/login');
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -25,15 +28,29 @@ app.set('view engine', 'ejs');
 
 app.use(favicon(__dirname + "/public/favicon.png"))
 
+var sess = {
+    secret: 'password',
+    saveUninitialized: false,
+    resave: false
+};
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(sess));
 
 app.use('/', index);
 app.use('/id', id);
 app.use('/datetime', datetime);
+app.use('/login', login);
+
+if(app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
 
 app.post('/post', function(req, res) {
     con.query("UPDATE log SET time_in=? WHERE date=? AND id=? AND time_in IS NULL;", [req.body.time, req.body.date, req.body.id], function(err, result, fields) {
@@ -49,6 +66,25 @@ app.post('/post', function(req, res) {
             res.send("Success - Updated with time_in");
         }
     });
+});
+
+function parseCookies(request) {
+    var list = {}, rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return list;
+}
+
+app.post('/logout', function(req, res) {
+    req.session.destroy(function(err) {
+        if(err) throw err;
+    });
+    
+    res.redirect("/login");
 });
 
 // catch 404 and forward to error handler

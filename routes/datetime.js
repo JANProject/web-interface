@@ -3,6 +3,7 @@ var url = require("url");
 var router = express.Router();
 var mysql = require("mysql");
 var moment = require("moment");
+var auth = require("../auth");
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -19,6 +20,8 @@ function convertTimeToMin(time) {
 }
 
 router.get('/', function(req, res, next) {
+    auth.verifyPass(req, res);
+    
     if(req.query.time == "" || req.query.time == null) {
        con.query("SELECT id, time_out, time_in FROM log WHERE date=?;", [req.query.date], function(err, result, fields) {
             if(err) throw err;
