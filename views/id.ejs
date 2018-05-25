@@ -65,6 +65,7 @@
             <th onclick="sortTable(0)">Date <span class="dropup" data-toggle="0"><span class="caret"></span></span></th>
             <th onclick="sortTable(1)">Time Out <span class="dropup" data-toggle="1"><span class="caret"></span></span></th>
             <th onclick="sortTable(2)">Time In <span class="dropup" data-toggle="2"><span class="caret"></span></span></th>
+            <th onclick="sortTable(3)">Bathroom <span class="dropup" data-toggle="3"><span class="caret"></span></span></th>
           </tr>
         </thead>
         <tbody>
@@ -74,12 +75,12 @@
               <td><%= moment(data[i].date).format('MM/DD/YYYY') %></td>
               <td><%= convertMinToTime(data[i].time_out) %></td>
               <td><%= convertMinToTime(data[i].time_in) %></td>
+              <td><%= parseBathroom(data[i].bathroom) %></td>
             </tr>
           <% } %>
           <% if(data.length == 0) { %>
             <tr><td colspan="3">No Data Found</td></tr>
           <% } %>
-          
         </tbody>
       </table>
     </div>

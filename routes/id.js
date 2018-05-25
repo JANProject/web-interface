@@ -15,7 +15,7 @@ var con = mysql.createConnection({
 router.get('/', function(req, res, next) {
     auth.verifyPass(req, res);
     
-    con.query("SELECT date, time_out, time_in FROM log WHERE id=?;", [req.query.id], function(err, result, fields) {
+    con.query("SELECT date, time_out, time_in, bathroom FROM log WHERE id=?;", [req.query.id], function(err, result, fields) {
         if(err) throw err;
         res.render('id', {
             id: req.query.id,

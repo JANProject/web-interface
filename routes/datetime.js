@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
     auth.verifyPass(req, res);
     
     if(req.query.time == "" || req.query.time == null) {
-       con.query("SELECT id, time_out, time_in FROM log WHERE date=?;", [req.query.date], function(err, result, fields) {
+       con.query("SELECT id, time_out, time_in, bathroom FROM log WHERE date=?;", [req.query.date], function(err, result, fields) {
             if(err) throw err;
             res.render('datetime', {
                 date: req.query.date,
@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
     } else {
         var time = convertTimeToMin(req.query.time);
         
-        con.query("SELECT id, time_out, time_in FROM log WHERE date=? AND time_out <= ? AND time_in >= ?", [req.query.date, time, time], function(err, result, fields) {
+        con.query("SELECT id, time_out, time_in, bathroom FROM log WHERE date=? AND time_out <= ? AND time_in >= ?", [req.query.date, time, time], function(err, result, fields) {
             if(err) throw err;
             res.render('datetime', {
                 date: req.query.date,

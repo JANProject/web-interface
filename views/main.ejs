@@ -2,6 +2,10 @@
 var use12Hour = true;
 
 convertMinToTime = function(minutes) {
+    if(minutes == null) {
+        return "Unknown";
+    }
+    
     var min = minutes % 60;
         
     if(min < 10) {
@@ -27,6 +31,14 @@ convertMinToTime = function(minutes) {
         }
     } else {
         return time;
+    }
+}
+
+parseBathroom = function(bathroom) {
+    if(bathroom == null) {
+        return "Unknown";
+    } else {
+        return bathroom;
     }
 }
 %>
