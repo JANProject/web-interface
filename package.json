@@ -1,6 +1,6 @@
 {
   "name": "lavatorylogger",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Efficient bathroom log manager",
   "author": "Jacob Sommer <jacob.sommer@comcast.net>",
   "private": true,
