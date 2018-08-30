@@ -15,16 +15,16 @@
 }
 
 .main {
-  min-height: calc(75vh - 165px);
-  min-height: -webkit-calc(75vh - 165px);
-  min-height: -moz-calc(75vh - 136px);
+  min-height: calc(75vh - 169px);
+  min-height: -webkit-calc(75vh - 169px);
+  min-height: -moz-calc(75vh - 169px);
 }
 
 @media only screen and (max-width: 768px) {
   .main {
-    min-height: calc(75vh - 202px);
-    min-height: -webkit-calc(75vh - 202px);
-    min-height: -moz-calc(75vh - 202px);
+    min-height: calc(75vh - 206px);
+    min-height: -webkit-calc(75vh - 206px);
+    min-height: -moz-calc(75vh - 206px);
   }
 }
 
