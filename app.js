@@ -33,7 +33,8 @@ app.use(favicon(__dirname + "/public/favicon.png"))
 var sess = {
     secret: auth.secret,
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    cookie: { maxAge: 60000 }
 };
 
 app.use(logger('dev'));
